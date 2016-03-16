@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DCCScoreDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alunos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CursoId" Type="int" Nullable="false" />
+          <Property Name="LoginDcc" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Matriculado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Avaliacoes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AlunoId" Type="int" Nullable="false" />
+          <Property Name="ProfessorDisciplinaId" Type="int" Nullable="false" />
+          <Property Name="Review" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="NotaGeral" Type="int" Nullable="false" />
+          <Property Name="Assiduidade" Type="int" Nullable="false" />
+          <Property Name="Didatica" Type="int" Nullable="false" />
+          <Property Name="Cobranca" Type="int" Nullable="false" />
+          <Property Name="Dominio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cursos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartamentoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sigla" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disciplinas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProfessorDisciplinas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="DisciplinaId" Type="int" Nullable="false" />
+          <Property Name="ProfessorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Professores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="DepartamentoId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_AlunoAval">
+          <End Role="Alunos" Type="Self.Alunos" Multiplicity="1" />
+          <End Role="Avaliacoes" Type="Self.Avaliacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alunos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avaliacoes">
+              <PropertyRef Name="AlunoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CursoAluno">
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="Alunos" Type="Self.Alunos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alunos">
+              <PropertyRef Name="CursoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartamentosProfessores">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
+          <End Role="Professores" Type="Self.Professores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professores">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DepCurso">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cursos">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Prof_ProfDisc">
+          <End Role="Professores" Type="Self.Professores" Multiplicity="1" />
+          <End Role="ProfessorDisciplinas" Type="Self.ProfessorDisciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorDisciplinas">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProfDiscAval">
+          <End Role="ProfessorDisciplinas" Type="Self.ProfessorDisciplinas" Multiplicity="1" />
+          <End Role="Avaliacoes" Type="Self.Avaliacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessorDisciplinas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avaliacoes">
+              <PropertyRef Name="ProfessorDisciplinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfessorDisciplinaDisciplinas">
+          <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
+          <End Role="ProfessorDisciplinas" Type="Self.ProfessorDisciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplinas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorDisciplinas">
+              <PropertyRef Name="DisciplinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DCCScoreDbModelStoreContainer">
+          <EntitySet Name="Alunos" EntityType="Self.Alunos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avaliacoes" EntityType="Self.Avaliacoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfessorDisciplinas" EntityType="Self.ProfessorDisciplinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Professores" EntityType="Self.Professores" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_AlunoAval" Association="Self.fk_AlunoAval">
+            <End Role="Alunos" EntitySet="Alunos" />
+            <End Role="Avaliacoes" EntitySet="Avaliacoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CursoAluno" Association="Self.fk_CursoAluno">
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="Alunos" EntitySet="Alunos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartamentosProfessores" Association="Self.FK_DepartamentosProfessores">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Professores" EntitySet="Professores" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DepCurso" Association="Self.fk_DepCurso">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Prof_ProfDisc" Association="Self.fk_Prof_ProfDisc">
+            <End Role="Professores" EntitySet="Professores" />
+            <End Role="ProfessorDisciplinas" EntitySet="ProfessorDisciplinas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProfDiscAval" Association="Self.fk_ProfDiscAval">
+            <End Role="ProfessorDisciplinas" EntitySet="ProfessorDisciplinas" />
+            <End Role="Avaliacoes" EntitySet="Avaliacoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfessorDisciplinaDisciplinas" Association="Self.FK_ProfessorDisciplinaDisciplinas">
+            <End Role="Disciplinas" EntitySet="Disciplinas" />
+            <End Role="ProfessorDisciplinas" EntitySet="ProfessorDisciplinas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DCCScoreDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DCCScoreDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alunos" EntityType="DCCScoreDbModel.Aluno" />
+          <EntitySet Name="Avaliacoes" EntityType="DCCScoreDbModel.Avaliaco" />
+          <EntitySet Name="Cursos" EntityType="DCCScoreDbModel.Curso" />
+          <EntitySet Name="Departamentos" EntityType="DCCScoreDbModel.Departamento" />
+          <EntitySet Name="Disciplinas" EntityType="DCCScoreDbModel.Disciplina" />
+          <EntitySet Name="ProfessorDisciplinas" EntityType="DCCScoreDbModel.ProfessorDisciplina" />
+          <EntitySet Name="Professores" EntityType="DCCScoreDbModel.Professore" />
+          <AssociationSet Name="fk_AlunoAval" Association="DCCScoreDbModel.fk_AlunoAval">
+            <End Role="Aluno" EntitySet="Alunos" />
+            <End Role="Avaliaco" EntitySet="Avaliacoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CursoAluno" Association="DCCScoreDbModel.fk_CursoAluno">
+            <End Role="Curso" EntitySet="Cursos" />
+            <End Role="Aluno" EntitySet="Alunos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProfDiscAval" Association="DCCScoreDbModel.fk_ProfDiscAval">
+            <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
+            <End Role="Avaliaco" EntitySet="Avaliacoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DepCurso" Association="DCCScoreDbModel.fk_DepCurso">
+            <End Role="Departamento" EntitySet="Departamentos" />
+            <End Role="Curso" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartamentosProfessores" Association="DCCScoreDbModel.FK_DepartamentosProfessores">
+            <End Role="Departamento" EntitySet="Departamentos" />
+            <End Role="Professore" EntitySet="Professores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfessorDisciplinaDisciplinas" Association="DCCScoreDbModel.FK_ProfessorDisciplinaDisciplinas">
+            <End Role="Disciplina" EntitySet="Disciplinas" />
+            <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Prof_ProfDisc" Association="DCCScoreDbModel.fk_Prof_ProfDisc">
+            <End Role="Professore" EntitySet="Professores" />
+            <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CursoId" Type="Int32" Nullable="false" />
+          <Property Name="LoginDcc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Matriculado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Avaliacoes" Relationship="DCCScoreDbModel.fk_AlunoAval" FromRole="Aluno" ToRole="Avaliaco" />
+          <NavigationProperty Name="Curso" Relationship="DCCScoreDbModel.fk_CursoAluno" FromRole="Aluno" ToRole="Curso" />
+        </EntityType>
+        <EntityType Name="Avaliaco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AlunoId" Type="Int32" Nullable="false" />
+          <Property Name="ProfessorDisciplinaId" Type="Int32" Nullable="false" />
+          <Property Name="Review" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="NotaGeral" Type="Int32" Nullable="false" />
+          <Property Name="Assiduidade" Type="Int32" Nullable="false" />
+          <Property Name="Didatica" Type="Int32" Nullable="false" />
+          <Property Name="Cobranca" Type="Int32" Nullable="false" />
+          <Property Name="Dominio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aluno" Relationship="DCCScoreDbModel.fk_AlunoAval" FromRole="Avaliaco" ToRole="Aluno" />
+          <NavigationProperty Name="ProfessorDisciplina" Relationship="DCCScoreDbModel.fk_ProfDiscAval" FromRole="Avaliaco" ToRole="ProfessorDisciplina" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alunos" Relationship="DCCScoreDbModel.fk_CursoAluno" FromRole="Curso" ToRole="Aluno" />
+          <NavigationProperty Name="Departamento" Relationship="DCCScoreDbModel.fk_DepCurso" FromRole="Curso" ToRole="Departamento" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Sigla" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cursos" Relationship="DCCScoreDbModel.fk_DepCurso" FromRole="Departamento" ToRole="Curso" />
+          <NavigationProperty Name="Professores" Relationship="DCCScoreDbModel.FK_DepartamentosProfessores" FromRole="Departamento" ToRole="Professore" />
+        </EntityType>
+        <EntityType Name="Disciplina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfessorDisciplinas" Relationship="DCCScoreDbModel.FK_ProfessorDisciplinaDisciplinas" FromRole="Disciplina" ToRole="ProfessorDisciplina" />
+        </EntityType>
+        <EntityType Name="ProfessorDisciplina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DisciplinaId" Type="Int32" Nullable="false" />
+          <Property Name="ProfessorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avaliacoes" Relationship="DCCScoreDbModel.fk_ProfDiscAval" FromRole="ProfessorDisciplina" ToRole="Avaliaco" />
+          <NavigationProperty Name="Disciplina" Relationship="DCCScoreDbModel.FK_ProfessorDisciplinaDisciplinas" FromRole="ProfessorDisciplina" ToRole="Disciplina" />
+          <NavigationProperty Name="Professore" Relationship="DCCScoreDbModel.fk_Prof_ProfDisc" FromRole="ProfessorDisciplina" ToRole="Professore" />
+        </EntityType>
+        <EntityType Name="Professore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="DCCScoreDbModel.FK_DepartamentosProfessores" FromRole="Professore" ToRole="Departamento" />
+          <NavigationProperty Name="ProfessorDisciplinas" Relationship="DCCScoreDbModel.fk_Prof_ProfDisc" FromRole="Professore" ToRole="ProfessorDisciplina" />
+        </EntityType>
+        <Association Name="fk_AlunoAval">
+          <End Type="DCCScoreDbModel.Aluno" Role="Aluno" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.Avaliaco" Role="Avaliaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avaliaco">
+              <PropertyRef Name="AlunoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CursoAluno">
+          <End Type="DCCScoreDbModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.Aluno" Role="Aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Aluno">
+              <PropertyRef Name="CursoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProfDiscAval">
+          <End Type="DCCScoreDbModel.ProfessorDisciplina" Role="ProfessorDisciplina" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.Avaliaco" Role="Avaliaco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessorDisciplina">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avaliaco">
+              <PropertyRef Name="ProfessorDisciplinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DepCurso">
+          <End Type="DCCScoreDbModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.Curso" Role="Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartamentosProfessores">
+          <End Type="DCCScoreDbModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.Professore" Role="Professore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Professore">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfessorDisciplinaDisciplinas">
+          <End Type="DCCScoreDbModel.Disciplina" Role="Disciplina" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.ProfessorDisciplina" Role="ProfessorDisciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplina">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorDisciplina">
+              <PropertyRef Name="DisciplinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Prof_ProfDisc">
+          <End Type="DCCScoreDbModel.Professore" Role="Professore" Multiplicity="1" />
+          <End Type="DCCScoreDbModel.ProfessorDisciplina" Role="ProfessorDisciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professore">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessorDisciplina">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DCCScoreDbModelStoreContainer" CdmEntityContainer="DCCScoreDbEntities">
+          <EntitySetMapping Name="Alunos">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Aluno">
+              <MappingFragment StoreEntitySet="Alunos">
+                <ScalarProperty Name="Matriculado" ColumnName="Matriculado" />
+                <ScalarProperty Name="LoginDcc" ColumnName="LoginDcc" />
+                <ScalarProperty Name="CursoId" ColumnName="CursoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avaliacoes">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Avaliaco">
+              <MappingFragment StoreEntitySet="Avaliacoes">
+                <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+                <ScalarProperty Name="Cobranca" ColumnName="Cobranca" />
+                <ScalarProperty Name="Didatica" ColumnName="Didatica" />
+                <ScalarProperty Name="Assiduidade" ColumnName="Assiduidade" />
+                <ScalarProperty Name="NotaGeral" ColumnName="NotaGeral" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="ProfessorDisciplinaId" ColumnName="ProfessorDisciplinaId" />
+                <ScalarProperty Name="AlunoId" ColumnName="AlunoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursos">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Curso">
+              <MappingFragment StoreEntitySet="Cursos">
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamentos">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamentos">
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplinas">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Disciplina">
+              <MappingFragment StoreEntitySet="Disciplinas">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfessorDisciplinas">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.ProfessorDisciplina">
+              <MappingFragment StoreEntitySet="ProfessorDisciplinas">
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="DisciplinaId" ColumnName="DisciplinaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professores">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Professore">
+              <MappingFragment StoreEntitySet="Professores">
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

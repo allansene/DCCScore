@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d9ef89b3d1b48a8a7b8128b80a9dcc4" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="DCCScoreDbModel.Aluno" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Avaliaco" Width="1.5" PointX="7.5" PointY="1.25" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Curso" Width="1.5" PointX="3" PointY="1.75" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Departamento" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Disciplina" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.ProfessorDisciplina" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Professore" Width="1.5" PointX="3" PointY="4.625" />
+        <AssociationConnector Association="DCCScoreDbModel.fk_AlunoAval" />
+        <AssociationConnector Association="DCCScoreDbModel.fk_CursoAluno" />
+        <AssociationConnector Association="DCCScoreDbModel.fk_ProfDiscAval" />
+        <AssociationConnector Association="DCCScoreDbModel.fk_DepCurso" />
+        <AssociationConnector Association="DCCScoreDbModel.FK_DepartamentosProfessores" />
+        <AssociationConnector Association="DCCScoreDbModel.FK_ProfessorDisciplinaDisciplinas" />
+        <AssociationConnector Association="DCCScoreDbModel.fk_Prof_ProfDisc" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
