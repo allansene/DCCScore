@@ -127,6 +127,7 @@
       <DependentUpon>DCCStoreDb.edmx</DependentUpon>
       <LastGenOutput>DCCStoreDb.cs</LastGenOutput>
     </Content>
+    <Content Include="SQL\qry_DCCScoreDb.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
