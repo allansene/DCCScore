@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DCCStore.Data.Validation
+﻿namespace DCCStore.Data.Validation
 {
     public static class AlunoExtension
     {

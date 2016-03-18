@@ -38,5 +38,6 @@ namespace DCCStore.Data
         public virtual DbSet<Disciplina> Disciplinas { get; set; }
         public virtual DbSet<ProfessorDisciplina> ProfessorDisciplinas { get; set; }
         public virtual DbSet<Professore> Professores { get; set; }
+        public virtual DbSet<Parametro> Parametros { get; set; }
     }
 }

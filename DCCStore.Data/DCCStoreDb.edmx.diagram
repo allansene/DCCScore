@@ -19,6 +19,7 @@
         <AssociationConnector Association="DCCScoreDbModel.FK_DepartamentosProfessores" />
         <AssociationConnector Association="DCCScoreDbModel.FK_ProfessorDisciplinaDisciplinas" />
         <AssociationConnector Association="DCCScoreDbModel.fk_Prof_ProfDisc" />
+        <EntityTypeShape EntityType="DCCScoreDbModel.Parametro" Width="1.5" PointX="7.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

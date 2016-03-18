@@ -51,6 +51,13 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="Chave" />
+          </Key>
+          <Property Name="Chave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProfessorDisciplinas">
           <Key>
             <PropertyRef Name="Id" />
@@ -157,6 +164,7 @@
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfessorDisciplinas" EntityType="Self.ProfessorDisciplinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Professores" EntityType="Self.Professores" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_AlunoAval" Association="Self.fk_AlunoAval">
@@ -228,6 +236,7 @@
             <End Role="Professore" EntitySet="Professores" />
             <End Role="ProfessorDisciplina" EntitySet="ProfessorDisciplinas" />
           </AssociationSet>
+          <EntitySet Name="Parametros" EntityType="DCCScoreDbModel.Parametro" />
         </EntityContainer>
         <EntityType Name="Aluno">
           <Key>
@@ -389,6 +398,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="Chave" />
+          </Key>
+          <Property Name="Chave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -461,6 +477,14 @@
                 <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="DCCScoreDbModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Chave" ColumnName="Chave" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DCCStore.Services</RootNamespace>
     <AssemblyName>DCCStore.Services</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -95,11 +95,17 @@
     <Compile Include="Membership\AlunoService.cs" />
     <Compile Include="Exceptions\ServicesException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Base64Coder.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\IServicoBase.cs" />
+    <Compile Include="Exceptions\ParametroNotFoundException.cs" />
     <Compile Include="Services\ServicoBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DCCScore.Utils\DCCScore.Utils.csproj">
+      <Project>{b8323b9b-d07f-4ecf-9ec4-b8c12aaac479}</Project>
+      <Name>DCCScore.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DCCStore.Data\DCCStore.Data.csproj">
       <Project>{ef0680a5-4d76-4f50-87e5-d4f843e1bfbb}</Project>
       <Name>DCCStore.Data</Name>

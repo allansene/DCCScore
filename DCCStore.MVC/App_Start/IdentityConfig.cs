@@ -1,5 +1,6 @@
 ﻿using DCCStore.MVC.Models;
 using DCCStore.MVC.Services;
+using DCCStore.Services.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

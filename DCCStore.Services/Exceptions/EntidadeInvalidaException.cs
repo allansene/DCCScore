@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace DCCStore.Services.Membership
+namespace DCCStore.Services.Exceptions
 {
     [Serializable]
     internal class EntidadeInvalidaException : Exception

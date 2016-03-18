@@ -131,7 +131,9 @@ namespace DCCStore.MVC.Controllers
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             UserManager.SendEmailAsync(user.Id, "Confirme sua conta no DCC Score", "Por favor, confirme sua conta clicando <a href=\"" + callbackUrl + "\">neste link</a>");
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         //

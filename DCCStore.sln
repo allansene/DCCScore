@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCCStore.Data", "DCCStore.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCCStore.Services", "DCCStore.Services\DCCStore.Services.csproj", "{9DCC9925-BB14-4471-92D0-A9129EB727FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCCScore.Utils", "DCCScore.Utils\DCCScore.Utils.csproj", "{B8323B9B-D07F-4ECF-9EC4-B8C12AAAC479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{9DCC9925-BB14-4471-92D0-A9129EB727FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DCC9925-BB14-4471-92D0-A9129EB727FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DCC9925-BB14-4471-92D0-A9129EB727FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8323B9B-D07F-4ECF-9EC4-B8C12AAAC479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8323B9B-D07F-4ECF-9EC4-B8C12AAAC479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8323B9B-D07F-4ECF-9EC4-B8C12AAAC479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8323B9B-D07F-4ECF-9EC4-B8C12AAAC479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

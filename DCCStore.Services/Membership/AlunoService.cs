@@ -2,6 +2,7 @@
 using DCCStore.Data;
 using DCCStore.Data.Repository;
 using DCCStore.Data.Validation;
+using DCCStore.Services.Exceptions;
 
 namespace DCCStore.Services.Membership
 {
