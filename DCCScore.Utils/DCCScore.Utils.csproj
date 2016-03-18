@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="Criptografia\CriptografiaAES.cs" />
     <Compile Include="Criptografia\HashSHA1.cs" />
-    <Compile Include="Parametrization\IParametrosService.cs" />
-    <Compile Include="Parametrization\ParametroNaoEncontradoException.cs" />
-    <Compile Include="Parametrization\ParametrosService.cs" />
+    <Compile Include="Parametrizacao\IParametrosService.cs" />
+    <Compile Include="Parametrizacao\ParametroNaoEncontradoException.cs" />
+    <Compile Include="Parametrizacao\ParametrosService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

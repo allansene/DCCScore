@@ -1,6 +1,6 @@
-﻿using DCCStore.Services.Services;
+﻿using DCCScore.Utils.Parametrizacao;
+using DCCStore.Services.Services;
 using Microsoft.AspNet.Identity;
-using Sinco.Configuracao;
 using System.Net.Mail;
 using System.Threading.Tasks;
 

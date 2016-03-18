@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sinco.Configuracao
+namespace DCCScore.Utils.Parametrizacao
 {
     public class ParametroNaoEncontradoException : SystemException
     {

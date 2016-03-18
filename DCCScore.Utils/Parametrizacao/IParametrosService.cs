@@ -1,5 +1,5 @@
 ﻿
-namespace Sinco.Configuracao
+namespace DCCScore.Utils.Parametrizacao
 {
     public interface IParametrosService
     {

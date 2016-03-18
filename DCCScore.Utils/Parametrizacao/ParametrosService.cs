@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
 
-namespace Sinco.Configuracao
+namespace DCCScore.Utils.Parametrizacao
 {
     public class ParametrosService : IParametrosService
     {
