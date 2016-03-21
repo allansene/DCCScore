@@ -9,7 +9,6 @@ namespace DCCStore.MVC.Services
     public class EmailService : IIdentityMessageService
     {
 
-        private const string SENDGRID_APIKEY = "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";
         IParametrosService _parametroService;
 
         public EmailService()
@@ -27,7 +26,8 @@ namespace DCCStore.MVC.Services
             myMessage.Text = message.Body;
             var password = Base64Coder.Base64Decode(_parametroService.getParametro("pass_usergrid"));
 
-            var transportWeb = new SendGrid.Web(SENDGRID_APIKEY, 
+            var transportWeb = new SendGrid.Web(
+                _parametroService.getParametro("key_sendgrid"), 
                 new System.Net.NetworkCredential(
                     _parametroService.getParametro("user_sendgrid"),
                     password
