@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DCCScore.MVC.Models
 {
-   
+
     public class ForgotViewModel
     {
         [Required]
@@ -15,7 +13,7 @@ namespace DCCScore.MVC.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Login")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -32,7 +30,7 @@ namespace DCCScore.MVC.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Login")]
         public string Email { get; set; }
 
         [Required]
