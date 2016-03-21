@@ -1,4 +1,4 @@
-﻿namespace DCCStore.Data.Validation
+﻿namespace DCCScore.Data.Validation
 {
     public static class AlunoExtension
     {

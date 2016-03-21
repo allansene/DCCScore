@@ -1,4 +1,4 @@
-﻿namespace DCCStore.Services.Services
+﻿namespace DCCScore.Services.Services
 {
     class Base64Coder
     {

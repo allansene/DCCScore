@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(DCCStore.MVC.Startup))]
-namespace DCCStore.MVC
+[assembly: OwinStartupAttribute(typeof(DCCScore.MVC.Startup))]
+namespace DCCScore.MVC
 {
     public partial class Startup
     {

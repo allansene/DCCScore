@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DCCStore.MVC.Models
+namespace DCCScore.MVC.Models
 {
     
     public class ForgotViewModel

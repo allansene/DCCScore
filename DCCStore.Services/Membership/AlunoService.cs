@@ -1,10 +1,9 @@
-﻿using System;
-using DCCStore.Data;
-using DCCStore.Data.Repository;
-using DCCStore.Data.Validation;
-using DCCStore.Services.Exceptions;
+﻿using DCCScore.Data;
+using DCCScore.Data.Repository;
+using DCCScore.Data.Validation;
+using DCCScore.Services.Exceptions;
 
-namespace DCCStore.Services.Membership
+namespace DCCScore.Services.Membership
 {
     public class AlunoService : IAlunoService
     {

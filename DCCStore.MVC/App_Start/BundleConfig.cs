@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DCCStore.MVC
+namespace DCCScore.MVC
 {
     public class BundleConfig
     {

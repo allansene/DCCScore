@@ -7,8 +7,8 @@
     <ProjectGuid>{9DCC9925-BB14-4471-92D0-A9129EB727FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DCCStore.Services</RootNamespace>
-    <AssemblyName>DCCStore.Services</AssemblyName>
+    <RootNamespace>DCCScore.Services</RootNamespace>
+    <AssemblyName>DCCScore.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -106,9 +106,9 @@
       <Project>{b8323b9b-d07f-4ecf-9ec4-b8c12aaac479}</Project>
       <Name>DCCScore.Utils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DCCStore.Data\DCCStore.Data.csproj">
+    <ProjectReference Include="..\DCCStore.Data\DCCScore.Data.csproj">
       <Project>{ef0680a5-4d76-4f50-87e5-d4f843e1bfbb}</Project>
-      <Name>DCCStore.Data</Name>
+      <Name>DCCScore.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

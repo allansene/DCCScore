@@ -1,9 +1,8 @@
-﻿using DCCScore.Services;
-using DCCStore.Data.Repository;
+﻿using DCCScore.Data.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace DCCStore.Services
+namespace DCCScore.Services
 {
     public class ServicoBase<TEntity> : IDisposable, IServicoBase<TEntity> where TEntity : class
     {

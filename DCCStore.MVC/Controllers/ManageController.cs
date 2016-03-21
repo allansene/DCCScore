@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using DCCStore.MVC.Models;
+using DCCScore.MVC.Models;
 
-namespace DCCStore.MVC.Controllers
+namespace DCCScore.MVC.Controllers
 {
     [Authorize]
     public class ManageController : Controller

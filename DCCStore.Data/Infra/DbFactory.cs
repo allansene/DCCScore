@@ -1,4 +1,4 @@
-﻿namespace DCCStore.Data
+﻿namespace DCCScore.Data
 {
     public class DbFactory : Disposable, IDbFactory
     {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace DCCStore.MVC.Models
+namespace DCCScore.MVC.Models
 {
     public class IndexViewModel
     {

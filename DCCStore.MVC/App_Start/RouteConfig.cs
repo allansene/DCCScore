@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DCCStore.MVC
+namespace DCCScore.MVC
 {
     public class RouteConfig
     {

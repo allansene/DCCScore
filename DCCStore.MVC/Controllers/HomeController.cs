@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DCCStore.MVC.Controllers
+namespace DCCScore.MVC.Controllers
 {
 
     public class HomeController : Controller

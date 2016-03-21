@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DCCStore.Data
+namespace DCCScore.Data
 {
     using System;
     using System.Data.Entity;

@@ -4,12 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Diagnostics;
 using System.Linq.Expressions;
-using DCCStore.Data;
+using DCCScore.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
-using DCCStore.Data.Repository;
+using DCCScore.Data.Repository;
 
-namespace DCCStore.Data.Repository
+namespace DCCScore.Data.Repository
 {
     public class RepositorioBase<TEntity> : IDisposable, IRepositorioBase<TEntity> where TEntity : class
     {

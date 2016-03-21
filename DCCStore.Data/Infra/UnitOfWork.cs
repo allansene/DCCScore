@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DCCStore.Data
+namespace DCCScore.Data
 {
     public class UnitOfWork : IUnitOfWork
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq.Expressions;
 
-namespace DCCStore.Data.Repository
+namespace DCCScore.Data.Repository
 {
     public interface IRepositorioBase<TEntity> where TEntity : class
     {

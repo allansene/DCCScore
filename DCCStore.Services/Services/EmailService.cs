@@ -1,10 +1,10 @@
 ﻿using DCCScore.Utils.Parametrizacao;
-using DCCStore.Services.Services;
+using DCCScore.Services.Services;
 using Microsoft.AspNet.Identity;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace DCCStore.MVC.Services
+namespace DCCScore.Services
 {
     public class EmailService : IIdentityMessageService
     {

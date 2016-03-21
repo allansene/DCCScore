@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DCCStore.Services.Membership
+namespace DCCScore.Services.Membership
 {
     public class EncryptionService : IEncryptionService
     {

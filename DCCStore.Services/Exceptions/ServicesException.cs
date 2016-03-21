@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace DCCStore.Services.Exceptions
+namespace DCCScore.Services.Exceptions
 {
     [Serializable]
     internal class ServicesException : Exception

@@ -236,9 +236,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DCCStore.Services\DCCStore.Services.csproj">
+    <ProjectReference Include="..\DCCStore.Services\DCCScore.Services.csproj">
       <Project>{9dcc9925-bb14-4471-92d0-a9129eb727fa}</Project>
-      <Name>DCCStore.Services</Name>
+      <Name>DCCScore.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

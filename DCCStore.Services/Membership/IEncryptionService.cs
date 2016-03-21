@@ -1,4 +1,4 @@
-﻿namespace DCCStore.Services.Membership
+﻿namespace DCCScore.Services.Membership
 {
     public interface IEncryptionService
     {

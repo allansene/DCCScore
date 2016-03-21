@@ -4,9 +4,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using DCCStore.MVC.Models;
+using DCCScore.MVC.Models;
 
-namespace DCCStore.MVC
+namespace DCCScore.MVC
 {
     public partial class Startup
     {

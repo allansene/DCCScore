@@ -1,4 +1,4 @@
-﻿using DCCStore.MVC.Models;
+﻿using DCCScore.MVC.Models;
 using DCCStore.MVC.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -9,7 +9,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace DCCStore.MVC
+namespace DCCScore.MVC
 {
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.

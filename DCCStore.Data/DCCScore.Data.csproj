@@ -7,8 +7,8 @@
     <ProjectGuid>{EF0680A5-4D76-4F50-87E5-D4F843E1BFBB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DCCStore.Data</RootNamespace>
-    <AssemblyName>DCCStore.Data</AssemblyName>
+    <RootNamespace>DCCScore.Data</RootNamespace>
+    <AssemblyName>DCCScore.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
