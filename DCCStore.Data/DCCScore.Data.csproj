@@ -132,6 +132,7 @@
     </Content>
     <Content Include="SQL\qry_DCCScoreDb.sql" />
     <Content Include="SQL\qry_DCCScoreDb_2.sql" />
+    <Content Include="SQL\qry_DCCScoreDb_3.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
