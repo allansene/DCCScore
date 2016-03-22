@@ -33,10 +33,11 @@ namespace DCCScore.MVC.Controllers
         }
 
         // GET api/Me
-        public GetViewModel Get()
+        public LoginViewModel Get()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            return new GetViewModel() { Hometown = user.Email };
+            return new LoginViewModel();
         }
+        
     }
 }

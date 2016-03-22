@@ -24,7 +24,7 @@ namespace DCCScore.Services
             myMessage.From = new MailAddress("no-reply@dccscore.com", "DCC Score");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
-            var password = Base64Coder.Base64Decode(_parametroService.getParametro("pass_usergrid"));
+            var password = Base64Coder.Base64Decode(_parametroService.getParametro("pass_sendgrid"));
 
             var transportWeb = new SendGrid.Web(
                 _parametroService.getParametro("key_sendgrid"), 
@@ -35,7 +35,7 @@ namespace DCCScore.Services
                 new System.TimeSpan(0,1,0)
             );
 
-            transportWeb.DeliverAsync(myMessage).Wait();
+            transportWeb.DeliverAsync(myMessage);
             return Task.FromResult(0);
         }
     }

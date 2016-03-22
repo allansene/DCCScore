@@ -22,7 +22,7 @@ namespace DCCScore.MVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DCCScoreDbEntities", throwIfV1Schema: false)
+            : base("DCCScoreDbIdentity", throwIfV1Schema: false)
         {
         }
 
