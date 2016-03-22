@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DCCScore.MVC.Models
 {
@@ -42,8 +43,11 @@ namespace DCCScore.MVC.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Hometown")]
-        public string Hometown { get; set; }
+        [Display(Name = "Curso")]
+        public ICollection<string> Curso { get; set; }
+        
+        [Display(Name = "Matriculado Atualmente?")]
+        public bool Matriculado { get; set; }
     }
 
     public class ResetPasswordViewModel
