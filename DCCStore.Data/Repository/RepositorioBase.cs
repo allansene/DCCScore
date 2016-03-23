@@ -4,10 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Diagnostics;
 using System.Linq.Expressions;
-using DCCScore.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
-using DCCScore.Data.Repository;
 
 namespace DCCScore.Data.Repository
 {

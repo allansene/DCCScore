@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DCCScore.MVC.Models;
+using DCCScore.Data.Repository;
+using DCCScore.Data;
+using DCCScore.Services.Membership;
 
 namespace DCCScore.MVC.Controllers
 {
@@ -15,13 +18,23 @@ namespace DCCScore.MVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepositorioBase<Curso> _cursoRepo;
+        private IAlunoService _alunoService;
+        private enum TipoMensagem
+        {
+            ResetPassword,
+            ConfirmAccount
+        }
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+            IRepositorioBase<Curso> cursoRepo, IAlunoService alunoServ)
         {
+            _alunoService = alunoServ;
+            _cursoRepo = cursoRepo;
             UserManager = userManager;
             SignInManager = signInManager;
         }
@@ -82,9 +95,6 @@ namespace DCCScore.MVC.Controllers
             {
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -100,12 +110,14 @@ namespace DCCScore.MVC.Controllers
                     return View(model);
             }
         }
-        
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var model = new RegisterViewModel();
+            model.Curso = _cursoRepo.RecuperaTodos().Select(j => j.Nome);
             return View();
         }
 
@@ -123,15 +135,14 @@ namespace DCCScore.MVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                    UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
+                    _alunoService.CreateAluno(
+                        new Aluno
+                        {
+                            CursoId = model.IdCurso,
+                            LoginDcc = model.Login,
+                            Matriculado = model.Matriculado
+                        });
+                    EnviaEmail(user, "Confirm your account", "Please confirm your account by clicking on this link:\n ", TipoMensagem.ConfirmAccount);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -139,6 +150,23 @@ namespace DCCScore.MVC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private async Task EnviaEmail(ApplicationUser user, string assunto, string mensagem, TipoMensagem tipo)
+        {
+            string code;
+            string callbackUrl;
+            if (tipo == TipoMensagem.ConfirmAccount)
+            {
+                code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            }
+            else
+            {
+                code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            }
+            UserManager.SendEmailAsync(user.Id, assunto, mensagem + callbackUrl);
         }
 
         //
@@ -177,13 +205,7 @@ namespace DCCScore.MVC.Controllers
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
-
-                //Send an email with this link
-                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                EnviaEmail(user, "Reset Password", "Please reset your password by clicking on this link:\n", TipoMensagem.ResetPassword);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -240,7 +262,7 @@ namespace DCCScore.MVC.Controllers
         {
             return View();
         }
-                
+
         //
         // POST: /Account/LogOff
         [HttpPost]
@@ -300,7 +322,7 @@ namespace DCCScore.MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        
+
         #endregion
     }
 }

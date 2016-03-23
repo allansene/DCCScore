@@ -42,9 +42,12 @@ namespace DCCScore.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
+        
         [Display(Name = "Curso")]
-        public ICollection<string> Curso { get; set; }
+        public IEnumerable<string> Curso { get; set; }
+
+        [Required]
+        public int IdCurso { get; set; }
         
         [Display(Name = "Matriculado Atualmente?")]
         public bool Matriculado { get; set; }
