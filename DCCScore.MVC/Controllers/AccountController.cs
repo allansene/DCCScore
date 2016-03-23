@@ -25,11 +25,7 @@ namespace DCCScore.MVC.Controllers
             ResetPassword,
             ConfirmAccount
         }
-
-        public AccountController()
-        {
-        }
-
+        
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
             IRepositorioBase<Curso> cursoRepo, IAlunoService alunoServ)
         {
