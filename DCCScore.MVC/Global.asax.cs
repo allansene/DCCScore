@@ -1,5 +1,6 @@
 ﻿
 using DCCScore.MVC.App_Start;
+using Microsoft.Practices.Unity;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace DCCScore.MVC
     {
         protected void Application_Start()
         {
-            DependencyInjector.RegisterAllTypes();
+            UnityConfig.RegisterTypes(UnityConfig.GetConfiguredContainer());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
