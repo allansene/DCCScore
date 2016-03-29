@@ -18,12 +18,16 @@
             <p>[at]dcc.ufmg.br</p>
         </div>
         @*<div class="form-group">
-            @Html.LabelFor(m => m.Curso, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.IdCurso, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.ListBoxFor(m => m.Curso, null, new { @class = "form-control" })
+                @Html.DropDownListFor(
+                    model => model.IdCurso,
+                    (IEnumerable<SelectListItem>)ViewBag.Cursos
+                )
             </div>
-        </div>*@       </div>
- 
+        </div>*@
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -36,11 +40,11 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
         </div>
-    </div>
 }
 
 @section Scripts {

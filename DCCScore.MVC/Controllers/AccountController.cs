@@ -116,7 +116,7 @@ namespace DCCScore.MVC.Controllers
         public ActionResult Register()
         {
             var model = new RegisterViewModel();
-            model.Curso = _cursoRepo.RecuperaTodos().Select(j => j.Nome);
+            ViewBag.Cursos = _cursoRepo.RecuperaTodos().Select(j => j.Nome);
             return View();
         }
 
