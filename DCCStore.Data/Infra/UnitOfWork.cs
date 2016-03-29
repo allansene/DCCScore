@@ -4,17 +4,17 @@ namespace DCCScore.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbFactory dbFactory;
+
         private DCCScoreDbEntities dbContext;
 
-        public UnitOfWork(IDbFactory dbFactory)
+        public UnitOfWork(DCCScoreDbEntities dbContext)
         {
-            this.dbFactory = dbFactory;
+            this.dbContext = dbContext;
         }
 
         public DCCScoreDbEntities DbContext
         {
-            get { return dbContext ?? (dbContext = dbFactory.Init()); }
+            get { return dbContext; }
         }
         public void Commit()
         {

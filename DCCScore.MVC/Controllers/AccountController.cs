@@ -10,14 +10,14 @@ using DCCScore.MVC.Models;
 using DCCScore.Data.Repository;
 using DCCScore.Data;
 using DCCScore.Services.Membership;
-
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 namespace DCCScore.MVC.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager UserManager;
         private IRepositorioBase<Curso> _cursoRepo;
         private IAlunoService _alunoService;
         private enum TipoMensagem
@@ -26,16 +26,15 @@ namespace DCCScore.MVC.Controllers
             ConfirmAccount
         }
 
-        public AccountController()
-        {
-        }
+        //public AccountController()
+        //{
+        //}
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+        public AccountController(ApplicationSignInManager signInManager,
             IRepositorioBase<Curso> cursoRepo, IAlunoService alunoServ)
         {
             _alunoService = alunoServ;
             _cursoRepo = cursoRepo;
-            UserManager = userManager;
             SignInManager = signInManager;
         }
 
@@ -51,17 +50,17 @@ namespace DCCScore.MVC.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
 
         // The Authorize Action is the end point which gets called when you access any
         // protected Web API. If the user is not logged in then they will be redirected to 
@@ -142,6 +141,7 @@ namespace DCCScore.MVC.Controllers
                             LoginDcc = model.Login,
                             Matriculado = model.Matriculado
                         });
+
                     EnviaEmail(user, "Confirm your account", "Please confirm your account by clicking on this link:\n ", TipoMensagem.ConfirmAccount);
                     return RedirectToAction("Index", "Home");
                 }
@@ -277,10 +277,10 @@ namespace DCCScore.MVC.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (UserManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    UserManager.Dispose();
+                    UserManager = null;
                 }
 
                 if (_signInManager != null)
@@ -292,6 +292,7 @@ namespace DCCScore.MVC.Controllers
 
             base.Dispose(disposing);
         }
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
         #region Helpers
         // Used for XSRF protection when adding external logins

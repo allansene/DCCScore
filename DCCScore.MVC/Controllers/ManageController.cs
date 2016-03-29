@@ -14,9 +14,9 @@ namespace DCCScore.MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
-        {
-        }
+        //public ManageController()
+        //{
+        //}
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -72,7 +72,7 @@ namespace DCCScore.MVC.Controllers
             };
             return View(model);
         }
-        
+
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
@@ -103,7 +103,7 @@ namespace DCCScore.MVC.Controllers
             AddErrors(result);
             return View(model);
         }
-                        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

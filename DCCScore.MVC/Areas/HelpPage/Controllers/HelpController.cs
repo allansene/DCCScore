@@ -13,14 +13,14 @@ namespace DCCStore.MVC.Areas.HelpPage.Controllers
     {
         private const string ErrorViewName = "Error";
 
-        public HelpController()
-            : this(GlobalConfiguration.Configuration)
-        {
-        }
+        //public HelpController()
+        //    : this(GlobalConfiguration.Configuration)
+        //{
+        //}
 
-        public HelpController(HttpConfiguration config)
+        public HelpController()
         {
-            Configuration = config;
+            Configuration = GlobalConfiguration.Configuration;
         }
 
         public HttpConfiguration Configuration { get; private set; }

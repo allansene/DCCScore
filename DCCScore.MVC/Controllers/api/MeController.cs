@@ -11,9 +11,9 @@ namespace DCCScore.MVC.Controllers
     {
         private ApplicationUserManager _userManager;
 
-        public MeController()
-        {
-        }
+        //public MeController()
+        //{
+        //}
 
         public MeController(ApplicationUserManager userManager)
         {

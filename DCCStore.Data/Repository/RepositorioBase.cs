@@ -14,20 +14,14 @@ namespace DCCScore.Data.Repository
         protected DbContext Db;
         protected const int MAX_NUMERO_TENTATIVAS = 10;
 
-        public RepositorioBase(IDbFactory dbFactory)
+        public RepositorioBase()
         {
-            DbFactory = dbFactory;
+            this.Db = new DCCScoreDbEntities();
         }
-
-        protected IDbFactory DbFactory
-        {
-            get;
-            private set;
-        }
-
+        
         public DbContext getContexto()
         {
-            return Db ?? DbFactory.Init();
+            return Db;
         }
 
         public virtual void Adiciona(TEntity obj)

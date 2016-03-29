@@ -61,7 +61,6 @@
     <Compile Include="Curso.cs">
       <DependentUpon>DCCStoreDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infra\DbFactory.cs" />
     <Compile Include="DCCStoreDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,7 +83,6 @@
       <DependentUpon>DCCStoreDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Infra\Disposable.cs" />
-    <Compile Include="Infra\IDbFactory.cs" />
     <Compile Include="Parametro.cs">
       <DependentUpon>DCCStoreDb.tt</DependentUpon>
     </Compile>

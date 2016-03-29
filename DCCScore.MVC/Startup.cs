@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
+using DCCScore.MVC.App_Start;
 
 [assembly: OwinStartup(typeof(DCCScore.MVC.Startup))]
 
@@ -12,7 +10,8 @@ namespace DCCScore.MVC
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            var container = SimpleInjectorInitializer.Initialize(app);
+            ConfigureAuth(app, container);
         }
     }
 }
