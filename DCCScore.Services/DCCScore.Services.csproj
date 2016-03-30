@@ -106,7 +106,7 @@
       <Project>{b8323b9b-d07f-4ecf-9ec4-b8c12aaac479}</Project>
       <Name>DCCScore.Utils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DCCStore.Data\DCCScore.Data.csproj">
+    <ProjectReference Include="..\DCCScore.Data\DCCScore.Data.csproj">
       <Project>{ef0680a5-4d76-4f50-87e5-d4f843e1bfbb}</Project>
       <Name>DCCScore.Data</Name>
     </ProjectReference>

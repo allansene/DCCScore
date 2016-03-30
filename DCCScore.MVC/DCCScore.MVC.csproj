@@ -358,16 +358,6 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DCCStore.Data\DCCScore.Data.csproj">
-      <Project>{ef0680a5-4d76-4f50-87e5-d4f843e1bfbb}</Project>
-      <Name>DCCScore.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DCCStore.Services\DCCScore.Services.csproj">
-      <Project>{9dcc9925-bb14-4471-92d0-a9129eb727fa}</Project>
-      <Name>DCCScore.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
