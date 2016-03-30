@@ -4,3 +4,5 @@ install:
   - nuget restore DCCScore.sln
 script:
   - xbuild /p:Configuration=Release DCCScore.sln
+notifications:
+  email: false
