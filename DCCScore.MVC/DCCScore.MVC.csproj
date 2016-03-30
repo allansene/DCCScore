@@ -367,6 +367,10 @@
       <Project>{9dcc9925-bb14-4471-92d0-a9129eb727fa}</Project>
       <Name>DCCScore.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DCCScore.Utils\DCCScore.Utils.csproj">
+      <Project>{b8323b9b-d07f-4ecf-9ec4-b8c12aaac479}</Project>
+      <Name>DCCScore.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
