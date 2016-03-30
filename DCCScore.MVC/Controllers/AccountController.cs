@@ -116,7 +116,8 @@ namespace DCCScore.MVC.Controllers
         public ActionResult Register()
         {
             var model = new RegisterViewModel();
-            ViewBag.Cursos = _cursoRepo.RecuperaTodos().Select(j => j.Nome);
+            var cursos = _cursoRepo.RecuperaTodos().ToList();
+            ViewBag.Cursos = new SelectList(cursos, "Id", "Nome");
             return View();
         }
 
@@ -127,29 +128,46 @@ namespace DCCScore.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = new ApplicationUser { UserName = model.Login, Email = model.Login + "@dcc.ufmg.br" };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var errors = ModelState
+                      .Where(x => x.Value.Errors.Count > 0)
+                      .Select(x => new { x.Key, x.Value.Errors });
+
+                if (ModelState.IsValid)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    _alunoService.CreateAluno(
-                        new Aluno
+                    var user = new ApplicationUser { UserName = model.Login, Email = model.Login + "@dcc.ufmg.br" };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        _alunoService.CreateAluno(new Aluno
                         {
                             CursoId = model.IdCurso,
                             LoginDcc = model.Login,
                             Matriculado = model.Matriculado
                         });
 
-                    EnviaEmail(user, "Confirm your account", "Please confirm your account by clicking on this link:\n ", TipoMensagem.ConfirmAccount);
+                        EnviaEmail(user, "Confirm your account", "Please confirm your account by clicking on this link:\n ", TipoMensagem.ConfirmAccount);
+                        TempData["popup"] = "Cadastro realizado com sucesso!";
+                    }
+                    AddErrors(result);
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+                else {
+                    foreach (var item in errors)
+                    {
+                        TempData["popup"] = item.Errors + "\n";
+                    }
+                    return RedirectToAction("Register", "Account"); ;
+                }
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            catch (System.Exception e)
+            {
+                TempData["popup"] = e.Message;
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
 
         private async Task EnviaEmail(ApplicationUser user, string assunto, string mensagem, TipoMensagem tipo)

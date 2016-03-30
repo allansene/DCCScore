@@ -17,29 +17,26 @@
             @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
             <p>[at]dcc.ufmg.br</p>
         </div>
-        @*<div class="form-group">
+    </div>
+        <div class="form-group">
             @Html.LabelFor(m => m.IdCurso, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownListFor(
-                    model => model.IdCurso,
-                    (IEnumerable<SelectListItem>)ViewBag.Cursos
-                )
+                @Html.DropDownListFor(model => model.IdCurso,
+                    (IEnumerable<SelectListItem>)ViewBag.Cursos, "Selecione seu curso", new { @class = "form-control" })
             </div>
-        </div>*@
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" class="btn btn-default" value="Register" />
