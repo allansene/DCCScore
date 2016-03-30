@@ -1,2 +1,6 @@
 ﻿language: csharp
 solution: DCCScore.sln
+install:
+  - nuget restore DCCScore.sln
+script:
+  - xbuild /p:Configuration=Release DCCScore.sln
